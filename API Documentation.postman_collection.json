@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "0ac0ac79-b410-4d05-9a8a-907ea376e8b4",
+		"name": "API Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31462441"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/v1.0/products?category=Lelia",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Lelia"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost/api/v1.0/products",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"products"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Filter By Category Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost/api/v1.0/products?category=Lelia",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"products"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "Lelia"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Filter By Original Price",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost/api/v1.0/products?price=30",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"products"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Filter By Category Name and Original Price",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost/api/v1.0/products?category=Lelia&price=600",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"products"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "Lelia"
+										},
+										{
+											"key": "price",
+											"value": "600"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "The `/collections` endpoints let you manage your [collections](https://learning.postman.com/docs/sending-requests/intro-to-collections/)."
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}
