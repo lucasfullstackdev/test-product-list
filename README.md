@@ -86,7 +86,7 @@ $ php artisan db:seed
 - [MySQL](https://www.mysql.com/)
 
 ## Observações importantes
-- Tenha as collections necessárias para testar [clicando aqui](https://github.com/lucasfullstackdev/coworking/blob/develop/collections.json)
+- Tenha as collections necessárias para testar [clicando aqui](https://github.com/lucasfullstackdev/test-product-list/blob/feat/readme/API%20Documentation.postman_collection.json)
 
 ## Considerações finais
 - API poderá passar por alterações, esta API não representa uma amostra real, devendo ser utilizada apenas para se ter uma noção sobre como funciona um API REST.
