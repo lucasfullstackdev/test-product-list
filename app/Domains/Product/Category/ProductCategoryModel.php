@@ -3,9 +3,9 @@
 namespace App\Domains\Product\Category;
 
 use App\Domains\Product\ProductModel;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\SoftDeletesModel;
 
-class ProductCategoryModel extends Model
+class ProductCategoryModel extends SoftDeletesModel
 {
     protected $table = 'products_category';
 
