@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 class Model extends EloquentModel
 {
   protected $hidden = [
+    'id',
     'created_at',
     'updated_at',
   ];
