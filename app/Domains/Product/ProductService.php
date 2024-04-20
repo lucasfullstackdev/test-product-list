@@ -15,15 +15,22 @@ class ProductService
 
   private function getProducts(ListProducts $request)
   {
+    $query = ProductModel::query();
+
     // Adding the condition to filter by category
     if (!empty($request->category)) {
-      return ProductModel::whereHas('category', function ($query) use ($request) {
+      $query->whereHas('category', function ($query) use ($request) {
         $query->where('name', 'like', "%$request->category%");
-      })->paginate();
+      });
     }
 
-    // If you do not have other filters, return all products
-    return ProductModel::paginate();
+    // Adding the condition to filter by price
+    if (!empty($request->price)) {
+      $query->where('price', '<=', $request->price);
+    }
+
+    // Return paginated results
+    return $query->paginate();
   }
 
   /**

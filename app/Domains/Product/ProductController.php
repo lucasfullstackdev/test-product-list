@@ -14,6 +14,8 @@ class ProductController extends Controller
 
   public function all(ListProducts $request)
   {
-    return Response()->json($this->productService->all($request));
+    return Response()->json(
+      $this->productService->all($request)
+    );
   }
 }
