@@ -15,21 +15,30 @@ class ProductService
 
   private function getProducts(ListProducts $request)
   {
-    if (empty($request->all())) {
-    }
 
-    return ProductModel::all();
+    // If you do not have other filters, return all products
+    return ProductModel::paginate();
   }
 
+  /**
+   * Prepares data to be returned
+   */
   private function prepToReturn($products)
   {
-    return $products->map(function ($product) {
-      return [
-        'sku' => $product->sku,
-        'name' => $product->name,
-        'category' => $product->categoryName,
-        'price' => $product->priceCalculated,
-      ];
-    });
+    $products->setCollection(
+      $products->getCollection()->map(fn ($product) => $this->prepProductInfo($product))
+    );
+
+    return $products;
+  }
+
+  private function prepProductInfo($product)
+  {
+    return [
+      'sku' => $product->sku,
+      'name' => $product->name,
+      'category' => $product->categoryName,
+      'price' => $product->priceCalculated,
+    ];
   }
 }
