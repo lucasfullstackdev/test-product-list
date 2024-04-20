@@ -8,86 +8,98 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<h1 align="center">API para Listagem de Produtos</h1>
-<h4 align="center">Uma API para aplicação de descontos em produtos</h4>
+<h1 align="center">Product Listing API</h1>
+<h4 align="center">An API for applying discounts on products</h4>
 
-## Sobre o projeto
-Este projeto tem como finalidade atestar meus conhecimentos nos seguintes pontos:
- 
-- Desenvolvimento de aplicações [Laravel](https://laravel.com/)
-- Desenvolvimento de API's REST utilizando [Laravel](https://laravel.com/)
+## About the project
+This project aims to attest to my knowledge in the following areas:
+
+- Development of [Laravel](https://laravel.com/) applications
+- Development of REST APIs using [Laravel](https://laravel.com/)
 - ORM [Eloquent](https://laravel.com/docs/11.x/eloquent)
-- Arquitetura [DDD](https://medium.com/cwi-software/domain-driven-design-do-in%C3%ADcio-ao-c%C3%B3digo-569b23cb3d47)
-- Implementação de [Camada de Serviço](https://davislevine.medium.com/service-design-patterns-930203c8df37)
+- [DDD](https://medium.com/cwi-software/domain-driven-design-do-in%C3%ADcio-ao-c%C3%B3digo-569b23cb3d47) Architecture
+- Implementation of [Service Layer](https://davislevine.medium.com/service-design-patterns-930203c8df37)
 - [Docker](https://www.docker.com/)
 - [Laravel Sail](https://laravel.com/docs/11.x/sail)
 
-## Por que este projeto?
-- Este projeto faz parte do meu portfólio pessoal, uma maneira de comprovar meus conhecimentos em [Laravel 11x](https://laravel.com/).
-- A construção de API's faz parte da rotina de um desenvolvedor back-end, então esse projeto serviu como uma simulação da rotina real de um desenvolvedor back-end.
+## Why this project?
+This project is part of my personal portfolio, a way to prove my knowledge in [Laravel 11x](https://laravel.com/).
+Building APIs is part of a backend developer's routine, so this project served as a simulation of a real backend developer's routine.
 
-## Sobre a modelagem do Banco de Dados
-- O desafio consistia na construção de uma API REST utilizando Laravel que permitisse a aplicação de descontos 
-- Para o desafio foram criadas as seguintes tabelas:
-	
+## About the Database Modeling
+The challenge consisted of building a Laravel REST API that allows for applying discounts.
+For the challenge, the following tables were created:
+
 | Table | Description |
 | ------------| --- |
-| products_category | Contêm todas as categorias dos produtos |
-| products | Contêm todos os produtos |
+| products_category | Contains all product categories |
+| products | Contains all products |
 
-## Hierarquia dos Descontos
-Levando em consideração que nossas aplicações precisam ser flexíveis e escaláveis, tomei por bem fazer algumas alterações no desafio proposto:
+## Discounts Hierarchy
+Considering that our applications need to be flexible and scalable, I decided to make some changes to the proposed challenge:
 
-- A coluna price na tabela de produtos inicialmente fora definida como integer, porém na minha visão isso não apresenta ganhos reais, mas sim limitando possíveis produtos com valores decimais, além do que em algum ponto futuro talvez fosse necessário mudar a tipagem dessa coluna o que poderia ser algo trabalhoso
-- Alterações na política de descontos:
-	- Removi a regra de desconto por categoria do código, assim a gestão do sistema poderá (em um futuro provável) implementar sua política de descontos em cada uma das categorias
-	- Removi a regra de desconto baseado no SKU do código, passando agora diretamente para uma nova coluna (discount) na tabela de produtos.
+- The price column in the products table was initially defined as an integer, but in my view, this does not provide real benefits, but rather limits possible products with decimal values. Additionally, at some point in the future, it might be necessary to change the data type of this column, which could be cumbersome.
+- Changes to the discount policy:
+    - I removed the category-based discount rule from the code, so the system management could (in a likely future) implement its discount policy for each category.
+    - I removed the SKU-based discount rule, now directly passing to a new column (discount) in the products table.
 
-Com a alteração na política de descontos, surgiu um novo questionamento: "Qual desconto prevalece em caso de termos desconto tanto no produto quanto na categoria?". Para resolver esse questionamento defini que o desconto do produto sempre terá maior prioridade quando comparado ao desconto na categoria, pois se trata de um desconto específico.
+With the change in the discount policy, a new question arose: "Which discount prevails in case we have both a product discount and a category discount?" To solve this question, I defined that the product discount always takes precedence over the category discount, as it is a specific discount.
 
 
 ## Setup
-1. Clone o repositório
-2. Acesse a raíz do projeto. 
-3. Execute o comando:
+1. Clone the repository
+2. Access the project root.
+3. Run the command:
 
 ```
 $ composer install
 ```
+
 ```bash
 $ composer require  laravel/sail  --dev
 ```
-4. Uma vez que as dependências tenham sido devidamente intaladas, você pode executar:
+
+4.  Once the dependencies have been properly installed, you can run:
+
 ```bash
 $ ./vendor/bin/sail up -d
 ```
-5. Uma vez que o projeto esteja rodando, você precisa rodar as migrations, para isso execute os comandos:
+
+5.  Once the project is running, you need to run the migrations, for that run the commands:
+
 ```bash
-# Acesse o container
+# Access the container
 $ docker exec -it test-product-list-laravel.test-1 bash
 ```
+
 ```bash
 $ php artisan migrate
 ```
-6. Para realizar carga de dados para teste, utilize o comando:
+
+6.  To load data for testing, use the command::
+
 ```bash
 $ php artisan db:seed
 ```
-7. O projeto deve estar disponível no endereco: [localhost](http://localhost:3000/) 
 
-## Observações importantes
-- É aconselhável que você tenha em sua máquina o [postman](https://www.postman.com/) para que possa fazer os devidos testes sobre as rotas disponíveis nesta API.
-- A utilização do Docker é fortemente aconselhada
+7. The project should be available at:: [localhost](http://localhost:3000/)
 
-## Dependências e suas versões
-- [PHP](https://www.php.net/releases/8.3/en.php) 8.3
-- [Laravel](https://laravel.com/docs/11.x) 11x
-- [Laravel Sail](https://laravel.com/docs/11.x/sail)
-- [MySQL](https://www.mysql.com/)
+## Important notes
 
-## Observações importantes
-- Tenha as collections necessárias para testar [clicando aqui](https://github.com/lucasfullstackdev/test-product-list/blob/main/API%20Documentation.postman_collection.json)
+-   It is advisable to have [Postman](https://www.postman.com/) on your machine so you can test the available routes in this API.
+-   The use of Docker is strongly advised.
+## Dependencies and their versions
 
-## Considerações finais
-- API poderá passar por alterações, esta API não representa uma amostra real, devendo ser utilizada apenas para se ter uma noção sobre como funciona um API REST.
-- Qualquer dúvida ou sugestão, entre em contato pelo e-mail: lucas.fullstack.dev@gmail.com
+-   [PHP](https://www.php.net/releases/8.3/en.php) 8.3
+-   [Laravel](https://laravel.com/docs/11.x) 11x
+-   [Laravel Sail](https://laravel.com/docs/11.x/sail)
+-   [MySQL](https://www.mysql.com/)
+
+## Important notes
+
+-   Have the necessary collections to test [by clicking here](https://github.com/lucasfullstackdev/test-product-list/blob/main/API%20Documentation.postman_collection.json)
+
+## Final considerations
+
+-   The API may undergo changes; this API does not represent a real sample and should only be used to get an idea of how a REST API works.
+-   For any questions or suggestions, please contact me via email: lucas.fullstack.dev@gmail.com
