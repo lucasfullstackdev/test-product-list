@@ -5,9 +5,12 @@ namespace App\Domains\Product;
 use App\Domains\Product\Category\ProductCategoryModel;
 use App\Models\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductModel extends Model
 {
+    use HasFactory;
+
     protected $table = 'products';
 
     protected $fillable = [
