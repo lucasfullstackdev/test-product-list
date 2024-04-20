@@ -44,7 +44,12 @@ class ProductService
       'sku' => $product->sku,
       'name' => $product->name,
       'category' => $product->categoryName,
-      'price' => $product->priceCalculated,
+      'price' => [
+        'original' => $product->price,
+        'final' => $product->priceCalculated,
+        'discount_percentage' => $product->discountPercentage,
+        'currency' => 'USD'
+      ]
     ];
   }
 }

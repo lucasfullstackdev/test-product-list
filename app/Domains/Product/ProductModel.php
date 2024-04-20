@@ -30,15 +30,45 @@ class ProductModel extends Model
         );
     }
 
+    protected function discountPercentage(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => isset($this->discountValue) ? "{$this->discountValue}%" : null
+        );
+    }
+
+    /**
+     * The discount that prevails must be that of the product, by category it is a generalized discount
+     * while the product discount is something more specific.
+     * 
+     * Of course, this can be revised, but it was necessary to implement a flow
+     */
+    protected function discountValue(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if (!empty($this->discount)) {
+                    return $this->discount;
+                }
+
+                if (!empty($this->category->discount)) {
+                    return $this->category->discount;
+                }
+
+                return null;
+            }
+        );
+    }
+
     protected function discountCalculated(): Attribute
     {
         return Attribute::make(
             get: function () {
-                if ($this->category->discount === 0) {
+                if (empty($this->discountValue)) {
                     return 0;
                 }
 
-                return number_format($this->price * ($this->category->discount / 100), 2);
+                return number_format($this->price * ($this->discountValue / 100), 2);
             }
         );
     }
