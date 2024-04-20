@@ -71,7 +71,7 @@ class ProductModel extends Model
                     return 0;
                 }
 
-                return number_format($this->price * ($this->discountValue / 100), 2);
+                return $this->price * ($this->discountValue / 100);
             }
         );
     }
